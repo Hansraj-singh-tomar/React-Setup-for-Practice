@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "name": "hansraj ",
+      "email": "hansraj@gmial.com",
+      "password": "12345678",
+      "id": 1
+    },
+    {
+      "name": "hansraj2 ",
+      "email": "hansraj2@gmial.com",
+      "password": "12345678",
+      "id": 2
+    }
+  ]
+}
