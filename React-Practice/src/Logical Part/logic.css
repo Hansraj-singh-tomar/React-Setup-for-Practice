@@ -1,0 +1,42 @@
+
+
+.childOne{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cart{
+    margin: 2%;
+    text-align: center;
+}
+
+.childTwo{
+    text-align: center;
+    padding: 20px;
+}
+
+.childTwo span{
+    margin: 10px;
+    padding: 5px;
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.childTwo span:hover{
+    border-bottom: 2px solid red;
+}
+
+.active{
+    background-color: yellow;
+    color: red;
+    border-bottom-color: green;
+}
+
+.pagination_disabled{
+    opacity: 0;
+}

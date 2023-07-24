@@ -1,7 +1,13 @@
-import React from 'react'
+import React from 'react';
+
+import Logic from './Logical Part/Logic';
+
+// import Todo from './Todo App/Todo';
+
+// import FileExplorer from './FileExplorerSystem/FileExplorer'
 
 // import Quiz from './Quiz App/Quiz'
-import Lyrics from './Lyrics app/lyrics'
+// import Lyrics from './Lyrics app/lyrics'
 
 // import ParentComp from './Practice Folder/PracticeFile'
 
@@ -15,9 +21,10 @@ import Lyrics from './Lyrics app/lyrics'
 // import Mistake1 from './CommonMistakes/useStateMistakes/Mistake1'
 
 // import ClassComp from './ClassComp'
-// import Todo from './Redux/Components/Todo'
 // import Login from './CRUD Operations/Login'
 // import Register from './CRUD Operations/Register'
+// import Todo from './Redux/Components/Todo'
+
 
 const App = () => {
   return (
@@ -39,8 +46,13 @@ const App = () => {
 
       {/* By GFG - Quiz App */}
       {/* <Quiz /> */}
-      <Lyrics />
+      {/* <Lyrics /> */}
+      {/* <FileExplorer/> */}
       
+      {/* Todo App */}
+      {/* <Todo/> */}
+
+      <Logic/>
     </>
   )
 }

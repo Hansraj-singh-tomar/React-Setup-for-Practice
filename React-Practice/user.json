@@ -3,14 +3,32 @@
     {
       "name": "hansraj ",
       "email": "hansraj@gmial.com",
-      "password": "12345678",
+      "phone": "12345678",
       "id": 1
     },
     {
       "name": "hansraj2 ",
       "email": "hansraj2@gmial.com",
-      "password": "12345678",
+      "phone": "12345678",
       "id": 2
+    },
+    {
+      "name": "hansraj3 ",
+      "email": "hansraj3@gmial.com",
+      "phone": "333333",
+      "id": 3
+    },
+    {
+      "name": "hansraj4",
+      "email": "hansraj4@gmial.com",
+      "phone": "4444444",
+      "id": 4
+    },
+    {
+      "name": "hansraj5",
+      "email": "hansraj5@gmial.com",
+      "phone": "555555",
+      "id": 5
     }
   ]
 }
