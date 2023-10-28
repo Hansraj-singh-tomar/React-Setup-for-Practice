@@ -1,6 +1,7 @@
-import React from 'react';
+import React from "react";
+import VoiceRecorder from "./VoiceRecorder/VoiceRecorder";
 
-import Logic from './Logical Part/Logic';
+// import Logic from './Logical Part/Logic';
 
 // import Todo from './Todo App/Todo';
 
@@ -25,7 +26,6 @@ import Logic from './Logical Part/Logic';
 // import Register from './CRUD Operations/Register'
 // import Todo from './Redux/Components/Todo'
 
-
 const App = () => {
   return (
     <>
@@ -48,13 +48,15 @@ const App = () => {
       {/* <Quiz /> */}
       {/* <Lyrics /> */}
       {/* <FileExplorer/> */}
-      
+
       {/* Todo App */}
       {/* <Todo/> */}
 
-      <Logic/>
-    </>
-  )
-}
+      {/* <Logic/> */}
 
-export default App
+      <VoiceRecorder />
+    </>
+  );
+};
+
+export default App;
