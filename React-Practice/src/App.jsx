@@ -1,5 +1,4 @@
 import React from "react";
-import VoiceRecorder from "./VoiceRecorder/VoiceRecorder";
 
 // import Logic from './Logical Part/Logic';
 
@@ -53,8 +52,6 @@ const App = () => {
       {/* <Todo/> */}
 
       {/* <Logic/> */}
-
-      <VoiceRecorder />
     </>
   );
 };
