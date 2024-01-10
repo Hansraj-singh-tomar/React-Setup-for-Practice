@@ -1,4 +1,6 @@
 import React from "react";
+import Index from "./autocomplete";
+
 
 // import Logic from './Logical Part/Logic';
 
@@ -24,6 +26,11 @@ import React from "react";
 // import Login from './CRUD Operations/Login'
 // import Register from './CRUD Operations/Register'
 // import Todo from './Redux/Components/Todo'
+
+// import Mainfile from "./tic-tac-toe/Mainfile";
+
+// from frontend master autocomplete
+
 
 const App = () => {
   return (
@@ -52,6 +59,12 @@ const App = () => {
       {/* <Todo/> */}
 
       {/* <Logic/> */}
+
+      {/* tic-tac-toe */}
+      {/* <Mainfile /> */}
+
+      {/* Autocomplete suggestions */}
+      <Index />
     </>
   );
 };
