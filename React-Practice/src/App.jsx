@@ -1,72 +1,75 @@
-import React from "react";
-import Index from "./autocomplete";
-
-
-// import Logic from './Logical Part/Logic';
-
-// import Todo from './Todo App/Todo';
-
-// import FileExplorer from './FileExplorerSystem/FileExplorer'
-
-// import Quiz from './Quiz App/Quiz'
-// import Lyrics from './Lyrics app/lyrics'
-
-// import ParentComp from './Practice Folder/PracticeFile'
-
-// import MIstake1 from './CommonMistakes/useEffectMistakes/MIstake1'
-// import Mistake2 from './CommonMistakes/useEffectMistakes/Mistake2'
-// import MIstake3 from './CommonMistakes/useEffectMistakes/MIstake3'
-// import Mistake4 from './CommonMistakes/useStateMistakes/Mistake4'
-
-// import Mistake3 from './CommonMistakes/useStateMistakes/Mistake3'
-// import Mistake2 from './CommonMistakes/useStateMistakes/Mistake2'
-// import Mistake1 from './CommonMistakes/useStateMistakes/Mistake1'
-
-// import ClassComp from './ClassComp'
-// import Login from './CRUD Operations/Login'
-// import Register from './CRUD Operations/Register'
-// import Todo from './Redux/Components/Todo'
-
-// import Mainfile from "./tic-tac-toe/Mainfile";
-
-// from frontend master autocomplete
-
+import React, { useState } from 'react';
+import Box from './components/Box';
 
 const App = () => {
-  return (
-    <>
-      {/* <ParentComp /> */}
-      {/* <Todo /> */}
-      {/* <Login /> */}
-      {/* <Register /> */}
-      {/* <ClassComp/> */}
-      {/* <Mistake1/> */}
-      {/* <Mistake2/> */}
-      {/* <Mistake3 /> */}
-      {/* <Mistake4/> */}
 
-      {/* useEffect mistakes */}
-      {/* <MIstake1 /> */}
-      {/* <Mistake2/> */}
-      {/* <MIstake3/> */}
+    const [state, setState] = useState(Array(9).fill(null));
+    const [isXTurn, setIsXTurn] = useState(true);
 
-      {/* By GFG - Quiz App */}
-      {/* <Quiz /> */}
-      {/* <Lyrics /> */}
-      {/* <FileExplorer/> */}
+    function isWinner() {
+        const posibleWinner = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [2, 4, 6],
+            [0, 4, 8],
+        ]
 
-      {/* Todo App */}
-      {/* <Todo/> */}
+        for (let logic of posibleWinner) {
+            const [a, b, c] = logic;
 
-      {/* <Logic/> */}
+            if (state[a] !== null && state[a] == state[b] && state[b] == state[c]) {
+                return state[a];
+            }
+        }
 
-      {/* tic-tac-toe */}
-      {/* <Mainfile /> */}
+        return false
+    }
 
-      {/* Autocomplete suggestions */}
-      <Index />
-    </>
-  );
-};
+    let winner = isWinner();
 
-export default App;
+    function handleClick(i) {
+        if (state[i] !== null) return;
+
+        let copyState = [...state];
+        copyState[i] = isXTurn ? "X" : "O";
+        setIsXTurn(!isXTurn);
+        setState(copyState);
+    }
+
+    function handleReset() {
+        setState(Array(9).fill(null));
+    }
+
+    return (
+        <div className='flex justify-center items-center flex-col h-screen'>
+            <h1 className='font-bold text-2xl mb-2'>Lets Play Tic Tac Toe Game.</h1>
+            {
+                winner ?
+                    (
+                        <>
+                            <h2 className='text-green-500 text-2xl mb-2'>Winner is - {winner}</h2>
+                            <button onClick={handleReset} className='text-white bg-black px-4 py-2 rounded-lg'>Play Again</button>
+                        </>
+                    )
+                    :
+                    (
+                        <>
+                            <h4 className='font-semibold text-1xl mb-2'>Player {isXTurn ? "X" : "O"} please move.</h4>
+                            <div className='grid grid-cols-3 gap-y-2 w-3/12 border-2 border-black pl-4 py-4'>
+                                {
+                                    [...Array(9)].map((_, i) => <Box key={i} state={state[i]} handleClick={handleClick} index={i} />)
+                                }
+
+                            </div>
+                        </>
+                    )
+            }
+        </div>
+    )
+}
+
+export default App
