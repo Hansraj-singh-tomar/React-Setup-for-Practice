@@ -1,75 +1,73 @@
 import React, { useState } from 'react';
-import Box from './components/Box';
+import InputBox from './components/InputBox';
+import useCurrency from './useCurrency';
 
 const App = () => {
+    const [from, setFrom] = useState("usd");
+    const [to, setTo] = useState("inr");
 
-    const [state, setState] = useState(Array(9).fill(null));
-    const [isXTurn, setIsXTurn] = useState(true);
+    const [amount, setAmount] = useState(0);
+    const [convertedAmount, setConvertedAmount] = useState(0);
 
-    function isWinner() {
-        const posibleWinner = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [2, 4, 6],
-            [0, 4, 8],
-        ]
 
-        for (let logic of posibleWinner) {
-            const [a, b, c] = logic;
+    let currencyInfo = useCurrency(from);
+    // console.log(currencyInfo);
 
-            if (state[a] !== null && state[a] == state[b] && state[b] == state[c]) {
-                return state[a];
-            }
-        }
+    const options = currencyInfo && Object.keys(currencyInfo);
+    // console.log(options);
 
-        return false
+    function convert() {
+        setConvertedAmount(amount * currencyInfo[to]);
     }
 
-    let winner = isWinner();
-
-    function handleClick(i) {
-        if (state[i] !== null) return;
-
-        let copyState = [...state];
-        copyState[i] = isXTurn ? "X" : "O";
-        setIsXTurn(!isXTurn);
-        setState(copyState);
+    function swap() {
+        setFrom(to);
+        setTo(from);
+        setAmount(convertedAmount);
+        setConvertedAmount(amount);
     }
 
-    function handleReset() {
-        setState(Array(9).fill(null));
+    function clear() {
+        setFrom(from);
+        setTo(to);
+        setAmount(0);
+        setConvertedAmount(0);
     }
 
     return (
-        <div className='flex justify-center items-center flex-col h-screen'>
-            <h1 className='font-bold text-2xl mb-2'>Lets Play Tic Tac Toe Game.</h1>
-            {
-                winner ?
-                    (
-                        <>
-                            <h2 className='text-green-500 text-2xl mb-2'>Winner is - {winner}</h2>
-                            <button onClick={handleReset} className='text-white bg-black px-4 py-2 rounded-lg'>Play Again</button>
-                        </>
-                    )
-                    :
-                    (
-                        <>
-                            <h4 className='font-semibold text-1xl mb-2'>Player {isXTurn ? "X" : "O"} please move.</h4>
-                            <div className='grid grid-cols-3 gap-y-2 w-3/12 border-2 border-black pl-4 py-4'>
-                                {
-                                    [...Array(9)].map((_, i) => <Box key={i} state={state[i]} handleClick={handleClick} index={i} />)
-                                }
-
-                            </div>
-                        </>
-                    )
-            }
+        <div
+            className='w-full h-screen bg-no-repeat bg-cover flex justify-center items-center flex-wrap'
+            style={{ backgroundImage: `url(https://png.pngtree.com/thumb_back/fh260/background/20220512/pngtree-growing-chart-against-the-background-of-the-usa-america-flag-candlestick-image_1298783.jpg)` }}
+        >
+            <div className='w-full max-w-md mx-auto border-2 border-white p-5'>
+                <InputBox
+                    text="From"
+                    amount={amount}
+                    setAmount={(amountt) => setAmount(amountt)}
+                    currOptions={options}
+                    selectedCurr={from}
+                    setCurrChange={(currency) => setFrom(currency)}
+                />
+                <div className='text-center'>
+                    <button onClick={swap} className='bg-blue-500 px-4 py-1 rounded-lg my-3'>Swap</button>
+                </div>
+                <InputBox
+                    text="To"
+                    amount={convertedAmount}
+                    setAmount={(amount) => setAmount(amount)}
+                    currOptions={options}
+                    selectedCurr={to}
+                    setCurrChange={(currency) => setTo(currency)}
+                />
+                <div className='text-center'>
+                    <button onClick={convert} className='bg-blue-500 w-full px-4 py-1 rounded-lg mt-4'>{`Convert ${from}  to ${to}`}</button>
+                </div>
+                <div className='text-center'>
+                    <button onClick={clear} className='bg-blue-500 w-full px-4 py-1 rounded-lg mt-4'>Clear</button>
+                </div>
+            </div>
         </div>
     )
 }
-
-export default App
+// https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${currency}.json
+export default App;
