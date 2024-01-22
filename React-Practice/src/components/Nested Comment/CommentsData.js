@@ -1,6 +1,6 @@
 export const commentsData = {
     id: "1",
-    // text: "Hello world! How are you?",
+    text: "Hello world! How are you?",
     replies: [
         {
             id: "2",
