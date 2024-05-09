@@ -1,3 +1,4 @@
+import React from "react";
 import LazyImage from './LazyImage';
 
 const imageGallery = [
@@ -30,8 +31,8 @@ const imageGallery = [
 function MainFile() {
     return (
         <div className='w-11/12 mx-auto'>
-            <h3>Photos from Nokia 1100</h3>
-            {imageGallery.map((image) => (
+            <h3 className="text-center text-2xl font-bold">Photos from Nokia 1100</h3>
+            {imageGallery?.map((image) => (
                 <LazyImage key={image.id} id={image.id} url={image.url} />
             ))}
         </div>

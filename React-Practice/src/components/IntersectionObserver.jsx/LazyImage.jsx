@@ -15,11 +15,12 @@ const LazyImage = ({ id, url }) => {
     };
 
     useEffect(() => {
+        console.log("lazy image is being render or not");
         let observer = new window.IntersectionObserver(callback);
-        // if (observer && ref.current) {
-        //     observer.observe(ref.current);
-        // }
-        observer.observe(ref);
+        if (observer && ref.current) {
+            observer.observe(ref.current);
+        }
+        // observer.observe(ref);
 
         return () => {
             // observer.unobserve(ref.current)
@@ -39,3 +40,4 @@ const LazyImage = ({ id, url }) => {
 };
 
 export default LazyImage;
+

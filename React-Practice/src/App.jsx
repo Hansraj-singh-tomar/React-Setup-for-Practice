@@ -1,5 +1,7 @@
 import React from 'react';
-import Practice from './components/Practice';
+
+// import Practice from './components/Practice';
+
 // import CheckboxGroup from './components/CheckboxGroup';
 // import RadioBtnGroup from './components/RadioBtnGroup';
 // import Quiz from './components/Quiz App/Quiz';
@@ -10,6 +12,8 @@ import Practice from './components/Practice';
 // import Index from './components/ProgressBar/RoadsideCoder/Index';
 // import Main from './components/Nested Comment/Main';
 // import MainFile from './components/IntersectionObserver.jsx/MainFile';
+import TransferList from './components/Imran Shaikh/TransferList';
+
 
 const App = () => {
     return (
@@ -36,9 +40,12 @@ const App = () => {
 
             {/* <CheckboxGroup /> */}
 
-            <Practice />
 
             {/* <MainFile /> */}
+
+            <TransferList />
+
+            {/* <Practice /> */}
         </div>
     )
 }
