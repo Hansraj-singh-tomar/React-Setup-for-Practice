@@ -40,6 +40,7 @@ const TransferList = () => {
         })
     }
 
+
     function handleClick(id, checked, direction) {
         if (direction === 'LEFT') {
             let copyList = [...leftList];

@@ -11,8 +11,8 @@ import React from 'react';
 // import Index from './components/ProgressBar/JsCafe/Index';
 // import Index from './components/ProgressBar/RoadsideCoder/Index';
 // import Main from './components/Nested Comment/Main';
-// import MainFile from './components/IntersectionObserver.jsx/MainFile';
-import TransferList from './components/Imran Shaikh/TransferList';
+import MainFile from './components/IntersectionObserver.jsx/MainFile';
+// import TransferList from './components/Imran Shaikh/TransferList';
 
 
 const App = () => {
@@ -41,9 +41,9 @@ const App = () => {
             {/* <CheckboxGroup /> */}
 
 
-            {/* <MainFile /> */}
+            <MainFile />
 
-            <TransferList />
+            {/* <TransferList /> */}
 
             {/* <Practice /> */}
         </div>

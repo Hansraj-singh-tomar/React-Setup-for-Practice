@@ -1,3 +1,5 @@
+// from coding scences we are doing this
+
 import React from "react";
 import LazyImage from './LazyImage';
 
@@ -31,10 +33,14 @@ const imageGallery = [
 function MainFile() {
     return (
         <div className='w-11/12 mx-auto'>
-            <h3 className="text-center text-2xl font-bold">Photos from Nokia 1100</h3>
-            {imageGallery?.map((image) => (
-                <LazyImage key={image.id} id={image.id} url={image.url} />
-            ))}
+            <h3 className="text-center text-2xl font-bold">From Coding Scenes - Photos from Nokia 1100</h3>
+            {
+                imageGallery?.map((img) => {
+                    return (
+                        <LazyImage key={img.id} id={img.id} url={img.url} />
+                    )
+                })
+            }
         </div>
     );
 }
