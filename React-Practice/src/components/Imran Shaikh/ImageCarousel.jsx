@@ -15,18 +15,36 @@ const ImageCarousel = () => {
         setImages(list);
     }
 
+    function handleClick(dir) {
+        const lastIdx = images.length - 1;
+        if (dir === 'left') {
+            if (index === 0) {
+                setIndex(lastIdx)
+            } else {
+                setIndex((prev) => prev - 1)
+            }
+        } else if (dir === 'right') {
+            if (index === lastIdx) {
+                setIndex(0)
+            } else {
+                setIndex((prev) => prev + 1)
+            }
+        }
+    }
+
+
     useEffect(() => {
         fetchImages();
     }, [])
 
     return (
         <div className='flex justify-center items-center h-screen'>
-            <div className='flex items-center'>
-                <button className='absolute text-black border-2 border-black p-2 text-3xl font-bold'>
+            <div className='relative flex items-center border-2 border-black p-2'>
+                <button onClick={() => handleClick('left')} className='absolute left-0 text-white border-2 border-black p-2 text-3xl font-bold cursor-pointer'>
                     {"<"}
                 </button>
                 <img src={images[index]} alt="not-found" className='w-[500px] h-[500px]' />
-                <button className=' border-2 border-black p-2 text-2xl font-bold'>
+                <button onClick={() => handleClick('right')} className='absolute right-0 border-2 text-white border-black p-2 text-3xl font-bold cursor-pointer'>
                     {">"}
                 </button>
             </div>
