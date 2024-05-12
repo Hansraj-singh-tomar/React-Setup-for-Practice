@@ -11,8 +11,10 @@ import React from 'react';
 // import Index from './components/ProgressBar/JsCafe/Index';
 // import Index from './components/ProgressBar/RoadsideCoder/Index';
 // import Main from './components/Nested Comment/Main';
-import MainFile from './components/IntersectionObserver.jsx/MainFile';
+// import MainFile from './components/IntersectionObserver.jsx/MainFile';
 // import TransferList from './components/Imran Shaikh/TransferList';
+// import CustomTabs from './components/Imran Shaikh/custom tabs/CustomTabs';
+import ImageCarousel from './components/Imran Shaikh/ImageCarousel';
 
 
 const App = () => {
@@ -41,9 +43,13 @@ const App = () => {
             {/* <CheckboxGroup /> */}
 
 
-            <MainFile />
+            {/* <MainFile /> */}
 
             {/* <TransferList /> */}
+
+            {/* <CustomTabs /> */}
+
+            <ImageCarousel />
 
             {/* <Practice /> */}
         </div>

@@ -1,121 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
-const listData = [
-    {
-        id: 1,
-        title: "item-1",
-        checked: false,
-    },
-    {
-        id: 2,
-        title: "item-2",
-        checked: false,
-    },
-    {
-        id: 3,
-        title: "item-3",
-        checked: false,
-    },
-    {
-        id: 4,
-        title: "item-4",
-        checked: false,
-    },
-]
+const Practice = () => {
+    const [box, setBox] = useState(Array(9).fill(null));
+    const [isXTurn, setIsXTurn] = useState(true);
 
+    console.log(box);
 
-function Practice() {
+    function isWinner() {
+        const posibleWinner = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [2, 4, 6],
+            [0, 4, 8],
+        ]
 
-    const [leftList, setLeftList] = useState(listData);
-    const [rightList, setRightList] = useState([]);
+        for (let logic of posibleWinner) {
+            const [a, b, c] = logic;
 
-    function checkedList(list, id, checked) {
-        return list.map((item) => {
-            if (item.id === id) {
-                return {
-                    ...item,
-                    checked: !checked
-                }
+            if (box[a] !== null && box[a] == box[b] && box[b] == box[c]) {
+                return box[a];
             }
-            return item;
-        })
-    }
-
-    function handleClick(id, checked, dir) {
-        if (dir === 'LEFT') {
-            let copyList = [...leftList];
-            copyList = checkedList(copyList, id, checked)
-            setLeftList(copyList);
-        } else {
-            let copyList = [...rightList];
-            copyList = checkedList(copyList, id, checked)
-            setRightList(copyList);
         }
+        return false;
     }
 
-    function reset(list) {
-        return list.map((item) => {
-            return {
-                ...item,
-                checked: false,
-            }
-        })
+    const winner = isWinner();
+
+    function handleClick(idx) {
+        if (box[idx] !== null) return;
+
+        let copyBox = [...box];
+        copyBox[idx] = isXTurn ? "X" : "O"
+        setIsXTurn(!isXTurn);
+        setBox(copyBox);
     }
 
-    function handleTransferBtn(dir) {
-        if (dir === 'right_to_left') {
-            let copyList = [...rightList];
-            let checkedList = copyList.filter((item) => item.checked);
-            let unCheckedList = copyList.filter((item) => !item.checked);
-            setLeftList(reset([...leftList, ...checkedList]));
-            setRightList(unCheckedList);
-        } else {
-            let copyList = [...leftList];
-            let checkedList = copyList.filter((item) => item.checked);
-            let unCheckedList = copyList.filter((item) => !item.checked);
-            setLeftList(unCheckedList);
-            setRightList(reset([...rightList, ...checkedList]))
-        }
+    function handleReset() {
+        setBox(Array(9).fill(null));
     }
 
     return (
-        <div className='w-full h-screen bg-gray-500 flex justify-center items-center'>
-            <div className='flex items-center w-[50%]'>
-                {/* left list */}
-                <div className='h-56 w-40 border-2 border-black p-3'>
-                    {
-                        leftList?.map(({ id, title, checked }) => {
-                            return (
-                                <h1 onClick={() => handleClick(id, checked, 'LEFT')} key={title} id={id} className={`${checked && 'bg-green-400'} w-full cursor-pointer text-center bg-gray-300 m-2 p-2 rounded-lg`}>{title}</h1>
-                            )
-                        })
-                    }
-                </div>
 
-
-                {/* action button */}
-                <div className='mx-4'>
-                    <div onClick={() => handleTransferBtn('right_to_left')} className='cursor-pointer w-32 text-center bg-green-400 py-2 '>Left</div>
-                    <div onClick={() => handleTransferBtn('left_to_right')} className='cursor-pointer w-32 text-center bg-green-400 py-2 my-2'>Right</div>
-                </div>
-
-
-                {/* right list */}
-                <div className='h-56 w-40 border-2 border-black p-3'>
-                    {
-                        rightList?.map(({ id, title, checked }) => {
-                            return (
-                                <h1 onClick={() => handleClick(id, checked, 'LEFT')} key={title} id={id} className={`${checked && 'bg-green-400'} w-full cursor-pointer text-center bg-gray-300 m-2 p-2 rounded-lg`}>{title}</h1>
-                            )
-                        })
-                    }
-                </div>
+        <div className='flex justify-center flex-col items-center w-full h-screen'>
+            <h1 className='my-4 font-bold'>Winner is = {winner}</h1>
+            <div className='grid grid-cols-3 gap-2 border-2 border-black p-2'>
+                {
+                    box.map((item, idx) => {
+                        return (
+                            <p key={idx} onClick={() => handleClick(idx)} className='w-10 h-10 border-2 border-black flex justify-center items-center font-bold text-lg' >{item}</p>
+                        )
+                    })
+                }
             </div>
+            <button className='my-4 border-2 border-black px-2' onClick={handleReset}>Reset</button>
         </div>
     )
 }
 
-export default Practice;
-
-
-
+export default Practice
