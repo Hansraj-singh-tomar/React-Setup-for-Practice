@@ -1,4 +1,5 @@
 import React from 'react';
+import TaskAppDragNDrop from './components/Imran Shaikh/TaskAppDragNDrop';
 
 // import Practice from './components/Practice';
 
@@ -14,7 +15,8 @@ import React from 'react';
 // import MainFile from './components/IntersectionObserver.jsx/MainFile';
 // import TransferList from './components/Imran Shaikh/TransferList';
 // import CustomTabs from './components/Imran Shaikh/custom tabs/CustomTabs';
-import ImageCarousel from './components/Imran Shaikh/ImageCarousel';
+// import ImageCarousel from './components/Imran Shaikh/ImageCarousel';
+// import AccordionCmp from './components/Accordion/AccordionCmp';
 
 
 const App = () => {
@@ -49,7 +51,11 @@ const App = () => {
 
             {/* <CustomTabs /> */}
 
-            <ImageCarousel />
+            {/* <ImageCarousel /> */}
+
+            {/* <AccordionCmp /> */}
+
+            <TaskAppDragNDrop />
 
             {/* <Practice /> */}
         </div>
