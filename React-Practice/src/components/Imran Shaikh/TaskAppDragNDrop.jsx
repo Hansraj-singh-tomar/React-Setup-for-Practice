@@ -54,7 +54,7 @@ const TaskAppDragNDrop = () => {
         setValue(task.title);
     }
 
-    function handleDrag(e, task) {
+    function onDrag(e, task) {
         setDragTask(task);
     }
 
@@ -105,7 +105,7 @@ const TaskAppDragNDrop = () => {
                                     <div
                                         key={task.id}
                                         draggable
-                                        onDrag={(e) => handleDrag(e, task)}
+                                        onDrag={(e) => onDrag(e, task)}
                                     >
                                         <div className='cursor-grab mt-2 w-[90%] mx-auto bg-slate-300 p-2 rounded-md flex justify-between'>
                                             <p className=''>{task.title}</p>

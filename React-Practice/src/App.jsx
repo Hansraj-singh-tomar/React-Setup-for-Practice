@@ -1,5 +1,4 @@
 import React from 'react';
-import TaskAppDragNDrop from './components/Imran Shaikh/TaskAppDragNDrop';
 
 // import Practice from './components/Practice';
 
@@ -17,6 +16,9 @@ import TaskAppDragNDrop from './components/Imran Shaikh/TaskAppDragNDrop';
 // import CustomTabs from './components/Imran Shaikh/custom tabs/CustomTabs';
 // import ImageCarousel from './components/Imran Shaikh/ImageCarousel';
 // import AccordionCmp from './components/Accordion/AccordionCmp';
+// import TaskAppDragNDrop from './components/Imran Shaikh/TaskAppDragNDrop';
+import FormValidation from './components/Imran Shaikh/FormValidation';
+
 
 
 const App = () => {
@@ -55,7 +57,9 @@ const App = () => {
 
             {/* <AccordionCmp /> */}
 
-            <TaskAppDragNDrop />
+            {/* <TaskAppDragNDrop /> */}
+
+            <FormValidation />
 
             {/* <Practice /> */}
         </div>
@@ -64,3 +68,5 @@ const App = () => {
 
 
 export default App;
+
+// I'll do some crazy things with that i can get high package i can cover theory but not able to do communication
