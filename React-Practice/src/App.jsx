@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import Practice from './components/Practice';
+import Practice from './components/Practice';
 
 // import CheckboxGroup from './components/CheckboxGroup';
 // import RadioBtnGroup from './components/RadioBtnGroup';
@@ -17,7 +17,14 @@ import React from 'react';
 // import ImageCarousel from './components/Imran Shaikh/ImageCarousel';
 // import AccordionCmp from './components/Accordion/AccordionCmp';
 // import TaskAppDragNDrop from './components/Imran Shaikh/TaskAppDragNDrop';
-import FormValidation from './components/Imran Shaikh/FormValidation';
+// import FormValidation from './components/Imran Shaikh/FormValidation';
+// import MultiStepForm from './components/Imran Shaikh/multi step form/MultiStepForm';
+// import TrafficLight from './components/InterviewQuestion/code for interview/TrafficLight';
+// import DynamicLocationSelector from './components/InterviewQuestion/code for interview/DynamicLocationSelector';
+// import MsExcel from './cqomponents/InterviewQuestion/AkashIngole/MsExcel';
+// import TimerWithStopStartPause from './components/InterviewQuestion/code for interview/TimerWithStopStartPause';
+// import DetectScrollBehave from './components/InterviewQuestion/code for interview/DetectScrollBehave';
+// import MovingDiv from './components/InterviewQuestion/code for interview/MovingDiv';
 
 
 
@@ -59,9 +66,23 @@ const App = () => {
 
             {/* <TaskAppDragNDrop /> */}
 
-            <FormValidation />
+            {/* <FormValidation /> */}
 
-            {/* <Practice /> */}
+            {/* <MultiStepForm /> */}
+
+            {/* <TrafficLight /> */}
+
+            {/* <DynamicLocationSelector /> */}
+
+            {/* <MsExcel /> */}
+
+            {/* <TimerWithStopStartPause /> */}
+
+            {/* <DetectScrollBehave /> */}
+
+            {/* <MovingDiv /> */}
+
+            <Practice />
         </div>
     )
 }
@@ -69,4 +90,14 @@ const App = () => {
 
 export default App;
 
-// I'll do some crazy things with that i can get high package i can cover theory but not able to do communication
+// Machine coding
+// DSA/Algo
+// React and Javascript
+// Node/Express/MongoDB
+// Next/Typescript/Testing
+// Babel/Webpack
+
+// React Native, PHP, Python, Django, laravel, postgress.
+
+
+

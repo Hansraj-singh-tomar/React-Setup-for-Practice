@@ -52,6 +52,7 @@ const FormValidation = () => {
 
     const [formData, setFormData] = useState(defaultValues);
     const [isPassMatch, setIsPassMatch] = useState(true);
+    const [lengthCheckValid, setLengthCheckValid] = useState(false);
 
     function handleInput(e) {
         const key = e.target.id;
@@ -67,6 +68,7 @@ const FormValidation = () => {
     function handleSubmit(e) {
         e.preventDefault();
         isValidForm();
+        checkPassLength();
         console.log(formData);
     }
 
@@ -82,13 +84,24 @@ const FormValidation = () => {
         setFormData(copyFormData);
     }
 
+    const checkPassLength = () => {
+        const copyData = { ...formData };
+        const password = copyData['password'].value;
+        console.log(password.length);
+        if (password.length < 8) {
+            setLengthCheckValid(true);
+        } else {
+            setLengthCheckValid(false);
+        }
+    }
+
     const passwordMatch = () => {
         const copyFormData = { ...formData };
         const pass = copyFormData['password'].value;
         const cPass = copyFormData['confirmPassword'].value;
 
         if (pass === cPass) {
-            setIsPassMatch(true)
+            setIsPassMatch(true);
         } else {
             setIsPassMatch(false);
         }
@@ -118,6 +131,10 @@ const FormValidation = () => {
                                     {isError && <span className='block text-red-500'>{errorMsg}</span>}
 
                                     {key === 'confirmPassword' && !isPassMatch && <span className='block text-red-500'>Password does not match</span>}
+
+                                    {
+                                        key === 'password' && lengthCheckValid && <span className='block text-red-500'>password must have atleast 8 characters</span>
+                                    }
                                 </div>
                             )
                         })

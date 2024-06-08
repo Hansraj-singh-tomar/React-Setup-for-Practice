@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto complete input search suggestions</title>
+
+    <style>
+
+        ul{
+            padding: 0;
+            margin: 0;
+            background-color: beige;
+            max-width: 150px;
+            max-height: 200px;
+            overflow: scroll;
+        }
+
+        ul li{
+            list-style: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .selected{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <!-- Autocomplete input search suggestion -->
+    <div class="text-center mt-5" >
+      <input type="text" id="search-input" class="p-2 rounded-lg text-black" placeholder="search items here...">
+      <ul id="suggestions">
+        <!-- <li>item 1</li>
+        <li>item 2</li> -->
+      </ul>
+    </div>
+
+
+    <script>
+        const input = document.getElementById("search-input");
+
+        const suggestionContainer = document.getElementById("suggestions"); 
+
+        let selectedIndex = -1;
+        let totalSuggestions;
+
+        input.addEventListener("input", handleSearchInput);
+
+        // listener to handle arrow down and arrow
+        input.addEventListener('keydown', handleKeyNavigation)
+
+
+        // listening events onInput change 
+        async function handleSearchInput(e) {
+            const value = e.target.value;
+            if (value === "") return;
+            clearSuggestions();
+            const result = await fetchData(value)
+            totalSuggestions = result.products.length;
+            renderSuggestions(result.products);
+        }
+
+
+        // fetching data
+        async function fetchData(value) {
+            try {
+                const res = await fetch(`https://dummyjson.com/products/search?q=${value}`);
+                const jsonRes = await res.json()
+                return jsonRes;
+            } catch (error) {
+                console.log(error);
+                return null
+            }
+        }
+
+     
+        // to build html list item
+        function renderSuggestions(data){
+            const fragment = document.createDocumentFragment();
+            data.forEach(item => {
+                const li = document.createElement("li")
+                li.textContent = item.title;
+                li.dataset.value = item.title;
+                li.addEventListener("click", (e) => handleAutoComplete(e.target))
+                // to use li outside this loop
+                fragment.append(li);
+            });
+            suggestionContainer.append(fragment)
+        }
+
+
+        // to clear the list to search something new item 
+        function clearSuggestions(){
+            suggestionContainer.innerHTML = "";
+        }
+
+
+        // clicking on list item we have to that item on search box
+        function handleAutoComplete(target){
+            // const value = e.target.dataset.value;
+            const value = target.dataset.value;
+            input.value = value;
+            clearSuggestions();
+        }
+
+        // handle key navigation like arrow down and up.
+        function handleKeyNavigation(e){
+            if(e.key === "ArrowDown"){
+                console.log(e.key);
+                if(selectedIndex < totalSuggestions){
+                    selectedIndex++;
+                    highlightSuggestions();
+                }
+            } else if(e.key === "ArrowUp"){
+                console.log(e.key);
+                if(selectedIndex > -1){
+                    selectedIndex--;
+                    highlightSuggestions();
+                }
+            } else if(e.key === "Enter"){
+                console.log(e.key);
+                const suggestionList = document.querySelectorAll('li');
+                handleAutoComplete(suggestionList[selectedIndex]);
+            }
+        }
+
+        function highlightSuggestions(){
+            const suggestionList = document.querySelectorAll('li');
+            suggestionList.forEach((el, index) => {
+                if(index === selectedIndex){
+                    el.classList.add("selected")
+                    // jiss sbhi list item ko highlight kar rhe hai usse hame view port par lana hai jo ki scroll ke undar hai
+                    el.scrollIntoView({block: 'nearest'})
+                } else {
+                    el.classList.remove("selected")
+                }
+            })
+        }
+    </script>
+</body>
+</html>
