@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Practice from './components/Practice';
+// import Practice from './components/Practice';
 
 // import CheckboxGroup from './components/CheckboxGroup';
 // import RadioBtnGroup from './components/RadioBtnGroup';
@@ -25,7 +25,9 @@ import Practice from './components/Practice';
 // import TimerWithStopStartPause from './components/InterviewQuestion/code for interview/TimerWithStopStartPause';
 // import DetectScrollBehave from './components/InterviewQuestion/code for interview/DetectScrollBehave';
 // import MovingDiv from './components/InterviewQuestion/code for interview/MovingDiv';
+// import Project from './components/Container-Presentational Pattern/Project';
 
+import ModalParent from './components/Modal/Example - 2/ModalParent';
 
 
 const App = () => {
@@ -82,7 +84,11 @@ const App = () => {
 
             {/* <MovingDiv /> */}
 
-            <Practice />
+            {/* <Project /> */}
+
+            <ModalParent />
+
+            {/* <Practice /> */}
         </div>
     )
 }
@@ -90,14 +96,8 @@ const App = () => {
 
 export default App;
 
-// Machine coding
-// DSA/Algo
-// React and Javascript
-// Node/Express/MongoDB
-// Next/Typescript/Testing
-// Babel/Webpack
 
-// React Native, PHP, Python, Django, laravel, postgress.
+
 
 
 
