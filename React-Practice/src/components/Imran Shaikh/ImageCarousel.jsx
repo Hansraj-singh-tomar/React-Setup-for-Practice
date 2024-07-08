@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react'
+// implementation from the frontend aman
+
+import React, { useEffect, useRef, useState } from 'react'
 
 const ImageCarousel = () => {
 
     const [images, setImages] = useState([]);
     const [index, setIndex] = useState(0);
+
+    const ref = useRef(null);
 
     async function fetchImages() {
         const url = "https://www.reddit.com/r/aww/top/.json?t=all";
@@ -34,17 +38,32 @@ const ImageCarousel = () => {
 
 
     useEffect(() => {
+        ref.current = setInterval(() => {
+            handleClick("right")
+        }, 1000)
+
         fetchImages();
+
+        return () => clearInterval(ref.current);
     }, [])
 
     return (
         <div className='flex justify-center items-center h-screen'>
-            <div className='relative flex items-center border-2 border-black p-2'>
-                <button onClick={() => handleClick('left')} className='absolute left-0 text-white border-2 border-black p-2 text-3xl font-bold cursor-pointer'>
+            <div
+                onMouseEnter={() => clearInterval(ref.current)}
+                onMouseLeave={() => {
+                    ref.current = setInterval(() => {
+                        handleClick("right")
+                    }, 1000)
+                }}
+                className='relative flex items-center border-2 border-black p-2'
+            >
+                {/* <div className='relative flex items-center border-2 border-black p-2'> */}
+                <button onClick={() => handleClick('left')} className='absolute left-0 text-white bg-black p-2 text-3xl rounded-sm font-bold cursor-pointer'>
                     {"<"}
                 </button>
                 <img src={images[index]} alt="not-found" className='w-[500px] h-[500px]' />
-                <button onClick={() => handleClick('right')} className='absolute right-0 border-2 text-white border-black p-2 text-3xl font-bold cursor-pointer'>
+                <button onClick={() => handleClick('right')} className='absolute right-0 text-white bg-black rounded-sm p-2 text-3xl font-bold cursor-pointer'>
                     {">"}
                 </button>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import Practice from './components/Practice';
+import Practice from './components/Practice';
 
 // import CheckboxGroup from './components/CheckboxGroup';
 // import RadioBtnGroup from './components/RadioBtnGroup';
@@ -26,8 +26,9 @@ import React from 'react';
 // import DetectScrollBehave from './components/InterviewQuestion/code for interview/DetectScrollBehave';
 // import MovingDiv from './components/InterviewQuestion/code for interview/MovingDiv';
 // import Project from './components/Container-Presentational Pattern/Project';
-
-import ModalParent from './components/Modal/Example - 2/ModalParent';
+// import ModalParent from './components/Modal/Example - 2/ModalParent';
+// import ReactOTP from './components/FrontendWithAman/OTP Generator/ReactOTP';
+// import FileExplorer from './components/File Explorer/FileExplorer';
 
 
 const App = () => {
@@ -86,9 +87,13 @@ const App = () => {
 
             {/* <Project /> */}
 
-            <ModalParent />
+            {/* <ModalParent /> */}
 
-            {/* <Practice /> */}
+            {/* <ReactOTP /> */}
+
+            {/* <FileExplorer /> */}
+
+            <Practice />
         </div>
     )
 }
