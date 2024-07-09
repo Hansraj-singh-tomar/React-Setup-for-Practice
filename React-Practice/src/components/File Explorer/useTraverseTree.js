@@ -17,12 +17,39 @@ const useTraverseTree = () => {
             return insertNode(obj, id, folderName, isFolder)
         });
 
-        console.log("latest node", latestNode);
+        console.log("latestNode", latestNode);
 
         return { ...tree, items: latestNode }
     }
 
-    return { insertNode }
+
+    const deleteNode = (tree, id) => {
+        if (tree.id === id) {
+            // We can't delete the root node; so return it unchanged
+            return tree;
+        }
+
+        // // Check if the node has the item we want to delete
+        // const index = tree.items.findIndex((obj) => obj.id === id);
+        // if (index !== -1) {
+        //     // Remove the item
+        //     tree.items.splice(index, 1);
+        //     return { ...tree, items: [...tree.items] };
+        // }
+
+        // // Recursively delete the item from nested structures
+        // const newItems = tree.items.map((obj) => deleteNode(obj, id));
+
+
+        // Filter out the item with the matching id
+        const filteredItems = tree.items.filter((obj) => obj.id !== id);
+
+        // Recursively delete the item from nested structures
+        const newItems = filteredItems.map((obj) => deleteNode(obj, id));
+
+        return { ...tree, items: newItems };
+    }
+    return { insertNode, deleteNode }
 }
 
 export default useTraverseTree;

@@ -6,18 +6,23 @@ import useTraverseTree from './useTraverseTree';
 const FileExplorer = () => {
     const [folderData, setFolderData] = useState(data);
 
-    const { insertNode } = useTraverseTree();
+    const { insertNode, deleteNode } = useTraverseTree();
 
     function handleInsertFolder(id, folderName, isFolder) {
         let newTree = insertNode(folderData, id, folderName, isFolder);
-        console.log("New Tree", newTree);
         setFolderData(newTree);
+    }
+
+    function handleDeleteFolder(id) {
+        let newTree = deleteNode(folderData, id)
+        // console.log("newTree", newTree);
+        setFolderData(newTree)
     }
 
     return (
         <div>
             <h1>File Explorer</h1>
-            <Folder folderData={folderData} handleInsertFolder={handleInsertFolder} />
+            <Folder folderData={folderData} handleInsertFolder={handleInsertFolder} handleDeleteFolder={handleDeleteFolder} />
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Practice from './components/Practice';
+// import Practice from './components/Practice';
 
 // import CheckboxGroup from './components/CheckboxGroup';
 // import RadioBtnGroup from './components/RadioBtnGroup';
@@ -28,7 +28,7 @@ import Practice from './components/Practice';
 // import Project from './components/Container-Presentational Pattern/Project';
 // import ModalParent from './components/Modal/Example - 2/ModalParent';
 // import ReactOTP from './components/FrontendWithAman/OTP Generator/ReactOTP';
-// import FileExplorer from './components/File Explorer/FileExplorer';
+import FileExplorer from './components/File Explorer/FileExplorer';
 
 
 const App = () => {
@@ -91,9 +91,9 @@ const App = () => {
 
             {/* <ReactOTP /> */}
 
-            {/* <FileExplorer /> */}
+            <FileExplorer />
 
-            <Practice />
+            {/* <Practice /> */}
         </div>
     )
 }
