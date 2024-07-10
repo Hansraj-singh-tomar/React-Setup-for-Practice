@@ -29,7 +29,8 @@ import React from 'react';
 // import ModalParent from './components/Modal/Example - 2/ModalParent';
 // import ReactOTP from './components/FrontendWithAman/OTP Generator/ReactOTP';
 // import FileExplorer from './components/File Explorer/FileExplorer';
-import ReactToast from './components/FrontendWithAman/ReactToast/ReactToast';
+// import ReactToast from './components/FrontendWithAman/ReactToast/ReactToast';
+import BoxContainer from './components/FrontendWithAman/Create C-Shape With Box/BoxContainer';
 
 
 const App = () => {
@@ -94,7 +95,9 @@ const App = () => {
 
             {/* <FileExplorer /> */}
 
-            <ReactToast />
+            {/* <ReactToast /> */}
+
+            <BoxContainer />
 
             {/* <Practice /> */}
         </div>
