@@ -12,26 +12,39 @@ import React from 'react';
 // import Index from './components/ProgressBar/RoadsideCoder/Index';
 // import Main from './components/Nested Comment/Main';
 // import MainFile from './components/IntersectionObserver.jsx/MainFile';
+// import AccordionCmp from './components/Accordion/AccordionCmp';
+
+// -------------------------------------------------------------
+
 // import TransferList from './components/Imran Shaikh/TransferList';
 // import CustomTabs from './components/Imran Shaikh/custom tabs/CustomTabs';
 // import ImageCarousel from './components/Imran Shaikh/ImageCarousel';
-// import AccordionCmp from './components/Accordion/AccordionCmp';
 // import TaskAppDragNDrop from './components/Imran Shaikh/TaskAppDragNDrop';
 // import FormValidation from './components/Imran Shaikh/FormValidation';
 // import MultiStepForm from './components/Imran Shaikh/multi step form/MultiStepForm';
+
+// -------------------------------------------------------------
+
 // import TrafficLight from './components/InterviewQuestion/code for interview/TrafficLight';
 // import DynamicLocationSelector from './components/InterviewQuestion/code for interview/DynamicLocationSelector';
 // import MsExcel from './cqomponents/InterviewQuestion/AkashIngole/MsExcel';
 // import TimerWithStopStartPause from './components/InterviewQuestion/code for interview/TimerWithStopStartPause';
 // import DetectScrollBehave from './components/InterviewQuestion/code for interview/DetectScrollBehave';
 // import MovingDiv from './components/InterviewQuestion/code for interview/MovingDiv';
+
+// -------------------------------------------------------------
+
 // import Project from './components/Container-Presentational Pattern/Project';
 // import ModalParent from './components/Modal/Example - 2/ModalParent';
-// import ReactOTP from './components/FrontendWithAman/OTP Generator/ReactOTP';
 // import FileExplorer from './components/File Explorer/FileExplorer';
-// import ReactToast from './components/FrontendWithAman/ReactToast/ReactToast';
-import BoxContainer from './components/FrontendWithAman/Create C-Shape With Box/BoxContainer';
 
+// --------------------------------------------------------------
+
+// import ReactOTP from './components/FrontendWithAman/OTP Generator/ReactOTP';
+// import ReactToast from './components/FrontendWithAman/ReactToast/ReactToast';
+// import BoxContainer from './components/FrontendWithAman/Create C-Shape With Box/BoxContainer';
+// import SnakeGame from './components/FrontendWithAman/Snake Game/SnakeGame';
+import ReactTab from './components/FrontendWithAman/React Tab/ReactTab';
 
 const App = () => {
     return (
@@ -97,7 +110,11 @@ const App = () => {
 
             {/* <ReactToast /> */}
 
-            <BoxContainer />
+            {/* <BoxContainer /> */}
+
+            {/* <SnakeGame /> */}
+
+            <ReactTab />
 
             {/* <Practice /> */}
         </div>
