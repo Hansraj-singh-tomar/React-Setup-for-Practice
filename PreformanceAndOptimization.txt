@@ -1,0 +1,344 @@
+1. Code splitting (Router base code splitting)
+
+Code splitting consists of separating the code into several packages or components that can be loaded on demand or in parallel. This means that they are not loaded until they are needed.
+
+import { lazy, Suspense } from "react";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+import { NavBar } from "./components/NavBar";
+// import { About, Contact, FAQs, Profile, Login } from "./pages";
+
+const Profile = lazy(() => import("./pages/Profile"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const FAQs = lazy(() => import("./pages/FAQs"));
+const Login = lazy(() => import("./pages/Login"));
+
+const isAuthenticated = true;
+export const PrivateRoutes = () => {
+  return (
+    <>
+      <NavBar />
+      <Routes>
+        <Route
+          path="profile"
+          element={<Suspense fallback={<>...</>}><Profile /></Suspense>}
+        />
+        <Route
+          path="about"
+          element={<Suspense fallback={<>...</>}><About /></Suspense>}
+        />
+        <Route
+          path="contact"
+          element={<Suspense fallback={<>...</>}><Contact /></Suspense>}
+        />
+        <Route
+          path="faqs"
+          element={<Suspense fallback={<>...</>}><FAQs /></Suspense>}
+        />
+
+        <Route path="/*" element={<Navigate to="/profile" replace />} />
+      </Routes>
+    </>
+  );
+};
+
+export const PublicRoutes = () => {
+  return (
+    <Routes>
+      <Route
+        path="login"
+        element={<Suspense fallback={<>...</>}><Login /></Suspense>}
+      />
+
+      <Route path="/*" element={<Navigate to="/login" replace />} />
+    </Routes>
+  );
+};
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Routes>
+        {isAuthenticated ? (
+          <Route path="/*" element={<PrivateRoutes />} />
+        ) : (
+          <Route path="/*" element={<PublicRoutes />} />
+        )}
+      </Routes>
+    </BrowserRouter>
+  );
+};
+export default App; 
+
+https://www.patterns.dev/vanilla/bundle-splitting/
+
+https://javascriptpatterns.vercel.app/patterns/performance-patterns/introduction
+
+https://dev.to/franklin030601/code-splitting-in-react-js-4o2g
+
+2. Import on interaction
+Lazy-load non-critical resources when a user interacts with UI requiring it
+The React.lazy function provides a built-in way to separate components in an application into separate chunks of JS with very little legwork
+ The React.lazy method makes it easy to code-split a React application on a component level using dynamic imports.
+
+You can then take care of loading states when you couple it with the suspense component.
+
+import { useState, lazy, Suspense } from "react";
+// import Emoji from "./Emoji";
+import Message from "./Message";
+
+const Emoji = lazy(() => import("./Emoji"));
+
+function App() {
+  const [showEmoji, toggleEmoji] = useState(false);
+
+  return (
+    <>
+      <Message />
+      <button onClick={() => toggleEmoji((prev) => !prev)}>Show Emoji</button>
+      {showEmoji && (
+        <Suspense fallback="Loading">
+          <Emoji />
+        </Suspense>
+      )}
+    </>
+  );
+}
+
+export default App;
+
+https://www.patterns.dev/vanilla/import-on-interaction
+
+3. Import on visibility 
+
+-Besides user interaction, we often have components that aren’t visible on the initial page.
+- A good example of this is lazy loading images that aren’t directly visible in the viewport, but only get loaded once the user scrolls down.
+- We can do the same with components! In order to know whether components are currently in our viewport, we can use the IntersectionObserver API, 
+or use libraries such as react-lazyload or react-loadable-visibility to quickly add import-on visibility to our application.
+
+import { Suspense, lazy, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import Message from "./Message";
+const Emoji = lazy(() => import("./Emoji"));
+
+function App() {
+  const { ref, inView } = useInView();
+
+  useEffect(() => {
+    console.log("inView", inView);
+  }, [inView]);
+  return (
+    <>
+      <Message />
+      <br />
+      <br />
+      <br />....
+      <div ref={ref}>
+        <Suspense fallback="Loading">{inView && <Emoji />}</Suspense>
+      </div>
+    </>
+  );
+}
+
+export default App;
+
+https://javascriptpatterns.vercel.app/patterns/performance-patterns/import-on-visibility
+
+https://www.patterns.dev/vanilla/import-on-visibility
+
+4. Virtual List
+
+- This is the idea of rendering only visible rows of content in a dynamic list instead of the entire list. 
+- The rows rendered are only a small subset of the full list with what is visible (the window) moving as the user scrolls. 
+- This can improve rendering performance.
+
+import { FixedSizeList as List } from "react-window";
+const Row = ({ index, style }) => <div style={style}>Row {index}</div>;
+
+function App() {
+  return (
+    <>
+      <List height={150} itemCount={1000} itemSize={35} width={300}>
+        {Row}
+      </List>
+    </>
+  );
+}
+
+export default App; 
+
+https://www.patterns.dev/vanilla/virtual-lists
+
+5. Prefetch 
+
+- Fetch and cache resources that may be requested sometime soon but not immediately on the initial load. 
+- A prefetched resource is fetched when the browser is idle and has calculated that it's got enough bandwidth, 
+after which it caches the prefetched resource. 
+
+import { useState } from "react";
+
+const App = () => {
+  const [showEmoji, toggleEmoji] = useState(false);
+  const [emojiEle, setEmojiPickerEl] = useState();
+  const handleClick = () => {
+    import(/* webpackPrefetch: true, webpackChunkName: "emoji" */ "./Emoji") // network tab it will show with name emoji.js file bcz of webpackChunkName 
+      .then((module) => module.default)
+      .then((emojiPicker) => {
+        setEmojiPickerEl(emojiPicker);
+        toggleEmoji(true);
+      });
+  };
+  return (
+    <div>
+      <h1>Webpack Prefetch</h1>
+      <button onClick={handleClick}>Show Emoji</button>
+      {showEmoji && emojiEle}
+    </div>
+  );
+};
+
+export default App; 
+
+https://www.patterns.dev/vanilla/import-on-interaction
+
+https://javascriptpatterns.vercel.app/patterns/performance-patterns/browser-hints
+
+https://www.patterns.dev/vanilla/prefetch
+
+6. Preload
+
+- Inform the browser of critical resources before they are discovered
+- The preload browser hint can be used to fetch resources that are critical to the current navigation, such as fonts or images that are instantly 
+(no longer than 3 seconds after the initial load) visible on a landing page.
+
+import { useState } from "react";
+
+const App = () => {
+  const [showEmoji, toggleEmoji] = useState(false);
+  const [emojiEle, setEmojiPickerEl] = useState();
+  const handleClick = () => {
+    import(/*  webpackPreload: true, webpackChunkName: "emoji" */ "./Emoji")
+      .then((module) => module.default)
+      .then((emojiPicker) => {
+        setEmojiPickerEl(emojiPicker);
+        toggleEmoji(true);
+      });
+  };
+  return (
+    <div>
+      <h1>Webpack Preload</h1>
+      <button onClick={handleClick}>Show Emoji</button>
+      {showEmoji && emojiEle}
+    </div>
+  );
+};
+
+export default App; 
+
+Note - import(/*  webpackPreload: true, webpackChunkName: "emoji" */ "./Emoji") this webpackPreload: true command didn't work for that we had to use preload-webpack-plugin npm package 
+
+Inside the webpack.config.js file we have to use it, and remove the magic comment from there and use this configuration.
+
+const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
+
+module: {
+
+   plugins: [
+
+      new PreloadWebpackPlugin(),
+
+   ],
+
+}
+
+https://webpack.js.org/guides/code-splitting/#prefetchingpreloading-modules
+
+https://javascriptpatterns.vercel.app/patterns/performance-patterns/browser-hints
+
+https://www.patterns.dev/vanilla/preload
+
+https://www.npmjs.com/package/preload-webpack-plugin/v/1.0.0
+
+https://github.com/vuejs/preload-webpack-plugin
+
+7. Tree Shaking
+
+The process of eliminating dead code before adding it to our bundle, is called 
+tree-shaking.
+
+webpack.config.js
+
+module.exports = {
+     module: {
+         optimization: {
+              usedExports: true
+          }
+      }
+}
+https://blog.saeloun.com/2022/11/24/tree-shaking-in-webpack-5/
+https://webpack.js.org/guides/tree-shaking/#add-a-utility
+8. Core Web vitals 
+
+ - Web Vitals is an initiative by Google to provide unified guidance for quality signals 
+that are essential to delivering a great user experience on the web.
+- Core Web Vitals are the subset of Web Vitals that apply to all web pages, should be measured by all site owners, and will be surfaced across all Google tools.
+
+A. Largest Contentful Paint (LCP) - 
+
+- LCP reports the render time of the largest image, text block, or video visible in the viewport, 
+relative to when the user first navigated to the page.
+- <img> elements (the first frame presentation time is used for animated content such as GIFs or animated PNGs)
+- <image> elements inside an <svg> element
+- <video> elements (the poster image load time or first frame presentation time for videos is used—whichever is earlier)
+ - An element with a background image loaded using the url() function, (as opposed to a CSS gradient)
+- Block-level elements containing text nodes or other inline-level text element children.
+
+Links - 
+
+https://web.dev/articles/vitals
+
+ https://web.dev/articles/lcp
+
+https://www.smashingmagazine.com/2023/01/optimizing-image-element-lcp/
+
+https://www.twicpics.com/blog/how-to-find-the-lcp-element-a-complete-guide
+
+
+
+B. Interaction to Next Paint (INP)
+
+- INP is a metric that assesses a page's overall responsiveness to user interactions by observing the latency of all 
+click, tap, and keyboard interactions that occur throughout the lifespan of a user's visit to a page. 
+- The final INP value is the longest interaction observed, ignoring outliers.
+
+Links -
+
+  https://web.dev/articles/inp
+
+https://www.remoterocketship.com/advice/how-i-debugged-and-fixed-inp
+
+https://medium.com/redbus-in/what-is-interaction-to-next-paint-inp-9c35cd7b6539
+
+C. Cumulative Layout Shift (CLS)
+
+- CLS is a measure of the largest burst of layout shift scores for every unexpected layout shift that occurs during the entire lifecycle of a page.
+
+Links -
+
+https://web.dev/articles/cls
+
+https://web.dev/articles/optimize-cls 
+
+Note -  you can use the web vitals chrome extension to see LCP, INP and CLS.
+
+9. Compression
+
+https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-20-04
+
+https://www.digitalocean.com/community/tutorials/how-to-improve-website-performance-using-gzip-and-nginx-on-ubuntu-20-04
+
+https://medium.com/age-of-awareness/setup-react-with-webpack-and-babel-5114a14a47e9
+
+https://stackoverflow.com/questions/69333358/referenceerror-react-is-not-defined-even-if-i-have-installed-dependencies
+
+https://dev.to/uguremirmustafa/how-to-compress-react-files-and-serve-with-iis-on-windows-server-3bj9

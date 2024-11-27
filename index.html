@@ -11,7 +11,7 @@
             padding: 0;
             margin: 0;
             background-color: beige;
-            max-width: 150px;
+            max-width: 176px;
             max-height: 200px;
             overflow: scroll;
         }
@@ -45,16 +45,26 @@
 
         let selectedIndex = -1;
         let totalSuggestions;
+        let debounceTimeoutId;
 
-        input.addEventListener("input", handleSearchInput);
+        input.addEventListener("input", handleDebouncedSearchInput);
 
         // listener to handle arrow down and arrow
         input.addEventListener('keydown', handleKeyNavigation)
 
 
+        function handleDebouncedSearchInput(e) {
+            let value = e.target.value;
+
+            clearTimeout(debounceTimeoutId);
+            
+            debounceTimeoutId = setTimeout(() => {
+                handleSearchInput(value);
+            }, 500);
+        }
+
         // listening events onInput change 
-        async function handleSearchInput(e) {
-            const value = e.target.value;
+        async function handleSearchInput(value) {
             if (value === "") return;
             clearSuggestions();
             const result = await fetchData(value)
@@ -97,7 +107,7 @@
         }
 
 
-        // clicking on list item we have to that item on search box
+        // clicking on list item we have to show that item on search box
         function handleAutoComplete(target){
             // const value = e.target.dataset.value;
             const value = target.dataset.value;
@@ -141,3 +151,5 @@
     </script>
 </body>
 </html>
+
+
