@@ -1,0 +1,6 @@
+What is Compound pattern 
+
+1. Multiple components come together to serve a common functionality.
+2. Think of select tag where select and option tag jointly help us create dropdowns
+3. React context API plays a very important role in compound pattern
+4. common use cases includes select, dropdown components, or menu items

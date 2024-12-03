@@ -44,7 +44,8 @@ import React from 'react';
 // import ReactToast from './components/FrontendWithAman/ReactToast/ReactToast';
 // import BoxContainer from './components/FrontendWithAman/Create C-Shape With Box/BoxContainer';
 // import SnakeGame from './components/FrontendWithAman/Snake Game/SnakeGame';
-import ReactTab from './components/FrontendWithAman/React Tab/ReactTab';
+// import ReactTab from './components/FrontendWithAman/React Tab/ReactTab';
+import Parent from './components/React Patterns/CompoundPattern/Parent';
 
 const App = () => {
     return (
@@ -114,7 +115,9 @@ const App = () => {
 
             {/* <SnakeGame /> */}
 
-            <ReactTab />
+            {/* <ReactTab /> */}
+
+            <Parent />
 
             {/* <Practice /> */}
         </div>
