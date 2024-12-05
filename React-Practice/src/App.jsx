@@ -45,7 +45,8 @@ import React from 'react';
 // import BoxContainer from './components/FrontendWithAman/Create C-Shape With Box/BoxContainer';
 // import SnakeGame from './components/FrontendWithAman/Snake Game/SnakeGame';
 // import ReactTab from './components/FrontendWithAman/React Tab/ReactTab';
-import Parent from './components/React Patterns/CompoundPattern/Parent';
+// import Parent from './components/React Patterns/CompoundPattern/Parent';
+import AutoCompleteSearchSuggestion from './components/AutoComSearchJsCafe/AutoCompleteSearchSuggestion';
 
 const App = () => {
     return (
@@ -117,7 +118,9 @@ const App = () => {
 
             {/* <ReactTab /> */}
 
-            <Parent />
+            {/* <Parent /> */}
+
+            <AutoCompleteSearchSuggestion />
 
             {/* <Practice /> */}
         </div>
