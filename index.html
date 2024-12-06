@@ -141,7 +141,7 @@
             suggestionList.forEach((el, index) => {
                 if(index === selectedIndex){
                     el.classList.add("selected")
-                    // jiss sbhi list item ko highlight kar rhe hai usse hame view port par lana hai jo ki scroll ke undar hai
+                    // jis bhi list item ko highlight kar rhe hai usse hame view port par lana hai jo ki scroll ke undar hai
                     el.scrollIntoView({block: 'nearest'})
                 } else {
                     el.classList.remove("selected")

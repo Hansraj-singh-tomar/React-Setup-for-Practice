@@ -11,7 +11,7 @@ import React from 'react';
 // import Index from './components/ProgressBar/JsCafe/Index';
 // import Index from './components/ProgressBar/RoadsideCoder/Index';
 // import Main from './components/Nested Comment/Main';
-// import MainFile from './components/IntersectionObserver.jsx/MainFile';
+import MainFile from './components/IntersectionObserver.jsx/MainFile';
 // import AccordionCmp from './components/Accordion/AccordionCmp';
 
 // -------------------------------------------------------------
@@ -45,8 +45,13 @@ import React from 'react';
 // import BoxContainer from './components/FrontendWithAman/Create C-Shape With Box/BoxContainer';
 // import SnakeGame from './components/FrontendWithAman/Snake Game/SnakeGame';
 // import ReactTab from './components/FrontendWithAman/React Tab/ReactTab';
+
+// -------------------------JSCafe---------------------------------------
+
 // import Parent from './components/React Patterns/CompoundPattern/Parent';
-import AutoCompleteSearchSuggestion from './components/AutoComSearchJsCafe/AutoCompleteSearchSuggestion';
+// import AutoCompleteSearchSuggestion from './components/AutoComSearchJsCafe/AutoCompleteSearchSuggestion';
+// import ProgressiveImage from './components/ImgOptimizationByJsCafe/ProgressiveImage/ProgressiveImage';
+// import ResponsiveImage from './components/ImgOptimizationByJsCafe/ResponsiveImage/ResponsiveImage';
 
 const App = () => {
     return (
@@ -74,7 +79,7 @@ const App = () => {
             {/* <CheckboxGroup /> */}
 
 
-            {/* <MainFile /> */}
+            <MainFile />
 
             {/* <TransferList /> */}
 
@@ -120,7 +125,11 @@ const App = () => {
 
             {/* <Parent /> */}
 
-            <AutoCompleteSearchSuggestion />
+            {/* <AutoCompleteSearchSuggestion /> */}
+
+            {/* <ProgressiveImage /> */}
+
+            {/* <ResponsiveImage /> */}
 
             {/* <Practice /> */}
         </div>
