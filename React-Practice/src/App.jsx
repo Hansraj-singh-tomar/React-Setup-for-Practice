@@ -11,7 +11,7 @@ import React from 'react';
 // import Index from './components/ProgressBar/JsCafe/Index';
 // import Index from './components/ProgressBar/RoadsideCoder/Index';
 // import Main from './components/Nested Comment/Main';
-import MainFile from './components/IntersectionObserver.jsx/MainFile';
+// import MainFile from './components/IntersectionObserver.jsx/MainFile';
 // import AccordionCmp from './components/Accordion/AccordionCmp';
 
 // -------------------------------------------------------------
@@ -53,6 +53,8 @@ import MainFile from './components/IntersectionObserver.jsx/MainFile';
 // import ProgressiveImage from './components/ImgOptimizationByJsCafe/ProgressiveImage/ProgressiveImage';
 // import ResponsiveImage from './components/ImgOptimizationByJsCafe/ResponsiveImage/ResponsiveImage';
 
+import IntersectionObserverCmp from './components/InfiniteScrolling (Using intersectionObserver and scolly and all)/Example-2/IntersectionObserverCmp';
+
 const App = () => {
     return (
         <div>
@@ -78,8 +80,7 @@ const App = () => {
 
             {/* <CheckboxGroup /> */}
 
-
-            <MainFile />
+            {/* <MainFile /> */}
 
             {/* <TransferList /> */}
 
@@ -130,6 +131,8 @@ const App = () => {
             {/* <ProgressiveImage /> */}
 
             {/* <ResponsiveImage /> */}
+
+            <IntersectionObserverCmp />
 
             {/* <Practice /> */}
         </div>
