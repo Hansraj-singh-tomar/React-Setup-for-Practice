@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import ProgressBar from './ProgressBar'
+import Progressbar from './Progressbar'
 
-const Index = () => {
+const ProgressbarCmp = () => {
     const [value, setValue] = useState(0);
 
     useEffect(() => {
@@ -9,23 +9,23 @@ const Index = () => {
             setValue((prev) => {
                 if (prev >= 100) {
                     clearInterval(interval);
-                    return prev
+                    return prev;
                 }
                 return prev + 1;
             })
-        }, [100])
+        }, [50])
 
         return () => clearInterval(interval);
     }, [])
 
-    console.log("index component is being re-render");
+    console.log("let's she this component is being re-render or not ");
 
     return (
-        <div className='w-7/12 mx-auto flex justify-center flex-col items-center py-4'>
-            <span>Progress Bar</span>
-            <ProgressBar value={value} />
-        </div>
+        <Progressbar value={value} max={100}>
+            <Progressbar.Bar />
+            <Progressbar.Label />
+        </Progressbar>
     )
 }
 
-export default Index
+export default ProgressbarCmp

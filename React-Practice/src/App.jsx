@@ -53,7 +53,10 @@ import React from 'react';
 // import ProgressiveImage from './components/ImgOptimizationByJsCafe/ProgressiveImage/ProgressiveImage';
 // import ResponsiveImage from './components/ImgOptimizationByJsCafe/ResponsiveImage/ResponsiveImage';
 
-import IntersectionObserverCmp from './components/InfiniteScrolling (Using intersectionObserver and scolly and all)/Example-2/IntersectionObserverCmp';
+// ------------------------------From chat gpt----------------------------------------
+// import IntersectionObserverCmp from './components/InfiniteScrolling (Using intersectionObserver and scolly and all)/Example-2/IntersectionObserverCmp';
+// import ProgressbarCmp from './components/ProgressBar/UsingCompoundPattern/ProgressbarCmp';
+import AutoCompleteCmp from './components/AutoCompleteSearchSuggestion/AutoComUsingCompPattern/AutoCompleteCmp';
 
 const App = () => {
     return (
@@ -132,7 +135,11 @@ const App = () => {
 
             {/* <ResponsiveImage /> */}
 
-            <IntersectionObserverCmp />
+            {/* <IntersectionObserverCmp /> */}
+
+            {/* from chat gpt */}
+            {/* <ProgressbarCmp /> */}
+            <AutoCompleteCmp />
 
             {/* <Practice /> */}
         </div>
@@ -141,3 +148,4 @@ const App = () => {
 
 
 export default App;
+
