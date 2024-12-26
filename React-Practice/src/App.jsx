@@ -56,7 +56,8 @@ import React from 'react';
 // ------------------------------From chat gpt----------------------------------------
 // import IntersectionObserverCmp from './components/InfiniteScrolling (Using intersectionObserver and scolly and all)/Example-2/IntersectionObserverCmp';
 // import ProgressbarCmp from './components/ProgressBar/UsingCompoundPattern/ProgressbarCmp';
-import AutoCompleteCmp from './components/AutoCompleteSearchSuggestion/AutoComUsingCompPattern/AutoCompleteCmp';
+// import AutoCompleteCmp from './components/AutoCompleteSearchSuggestion/AutoComUsingCompPattern/AutoCompleteCmp';
+import FileExplorer from './components/File Explorer Examples/File Explorer using compound design pattern/FileExplorer';
 
 const App = () => {
     return (
@@ -139,7 +140,9 @@ const App = () => {
 
             {/* from chat gpt */}
             {/* <ProgressbarCmp /> */}
-            <AutoCompleteCmp />
+            {/* <AutoCompleteCmp /> */}
+
+            <FileExplorer />
 
             {/* <Practice /> */}
         </div>
