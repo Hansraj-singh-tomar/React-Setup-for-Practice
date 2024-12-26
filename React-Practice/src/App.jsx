@@ -57,7 +57,8 @@ import React from 'react';
 // import IntersectionObserverCmp from './components/InfiniteScrolling (Using intersectionObserver and scolly and all)/Example-2/IntersectionObserverCmp';
 // import ProgressbarCmp from './components/ProgressBar/UsingCompoundPattern/ProgressbarCmp';
 // import AutoCompleteCmp from './components/AutoCompleteSearchSuggestion/AutoComUsingCompPattern/AutoCompleteCmp';
-import FileExplorer from './components/File Explorer Examples/File Explorer using compound design pattern/FileExplorer';
+// import FileExplorer from './components/File Explorer Examples/File Explorer using compound design pattern/FileExplorer';
+import AccordionCmp from './components/Accordion Machine coding/Accordion using compound pattern/AccordionCmp';
 
 const App = () => {
     return (
@@ -142,7 +143,9 @@ const App = () => {
             {/* <ProgressbarCmp /> */}
             {/* <AutoCompleteCmp /> */}
 
-            <FileExplorer />
+            {/* <FileExplorer /> */}
+
+            <AccordionCmp />
 
             {/* <Practice /> */}
         </div>
